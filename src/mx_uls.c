@@ -90,6 +90,12 @@ char *get_name(struct stat sb,  char *file) {
 	return res;
 }
 
+static char *time_for_lflag(struct stat sb) {
+	char *tmp = ctime(&sb.st_ctime);
+	char *oneIndex = mx_memchr(tmp, ' ', mx_strlen(tmp));
+	return mx_strndup(++oneIndex, 16);
+}
+
 // =================================================== //
 //                   Печать строки                     //
 
@@ -106,7 +112,7 @@ static char *str_to_print(struct stat sb,  char *file) {
 	res = mx_strjoin(res, "  ");
 	res = mx_strjoin(res, mx_itoa(sb.st_size)); // 623
 	res = mx_strjoin(res, " ");
-	res = mx_strjoin(res, ctime(&sb.st_ctime)); // Nov 18 17:33
+	res = mx_strjoin(res, time_for_lflag(sb)); // Nov 18 17:33
 	res = mx_strjoin(res, name); // Makefile
 	mx_strdel(&name);
 	return res;
@@ -116,17 +122,19 @@ void display_contents(char * name){
 	struct stat sb;
 	lstat(name, &sb);
 	char *res = str_to_print(sb, name);
-	printf("%s ", res);
+	printf("%s\n", res);
 	mx_strdel(&res);
 }
 
 void get_contents(DIR *d){
 	
 	struct dirent *entry;
-	entry = readdir(d);
+	
 	// struct stat sb;
 	// stat("..", &sb);
-	display_contents(entry->d_name);
+	entry = readdir(d);
+	//while ((entry = readdir(d)) != NULL)
+		display_contents(entry->d_name);
 	// printf("%lld", sb.st_blocks); // - печатает  Total blocks size
 }
 

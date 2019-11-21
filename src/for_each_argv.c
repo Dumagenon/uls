@@ -7,13 +7,15 @@ static void print_one_dir(char *str) {
 
 static void print_dirs(t_list *list, t_list *files) {
     for (t_list *i = list; i != NULL; i = i->next) {
+        system("sleep 1 & leaks -q uls");
         if (files != NULL)
             print_one_dir(i->data);
         if (i->next) {
             mx_uls_without_flag(i->data);
             mx_printchar('\n');
-        } else 
+        } else {
             mx_uls_without_flag(i->data);
+        }
     }
 }
 
@@ -38,7 +40,5 @@ void for_each_argv(int argc, char* argv[]) {
     }
     else
         print_standart(files);
-    
     print_dirs(dirs, files);
-    system("pause & leaks -q uls");
 }

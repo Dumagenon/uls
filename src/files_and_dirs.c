@@ -22,9 +22,9 @@ t_list *files_and_dirs(int argc, char *argv[], t_list **files, t_list **dirs) {
     t_list *err = NULL;
     for (int i = 1; i < argc; i++) {
         if (isFile(argv[i]) == 1) 
-            mx_push_back(files, argv[i], mx_strlen(argv[i]));
+            mx_push_back(files, mx_strdup(argv[i]), mx_strlen(argv[i]));
         else if (isFile(argv[i]) == 0)
-            mx_push_back(dirs, argv[i], mx_strlen(argv[i]));
+            mx_push_back(dirs, mx_strdup(argv[i]), mx_strlen(argv[i]));
         else if (isFile(argv[i]) == -1) {
             char *tmp = mx_strdup("uls: "),
             *tmp2 = mx_strjoin(tmp, argv[i]),
