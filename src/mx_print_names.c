@@ -36,12 +36,14 @@ void print_names(char **names, int max, int rows, int size)
             if (mx_strlen(names[i + j]) < max)
             {
                 mx_printstr(names[i + j]);
-                print_spaces(max - mx_strlen(names[i + j]));
+                if (i + j < size - rows) 
+                    print_spaces(max - mx_strlen(names[i + j]));
             }
             else
             {
                 mx_printstr(names[i + j]);
-                mx_printchar(' ');
+                if (i + j < size - rows)
+                    mx_printchar(' ');
             }
         }
         mx_printchar('\n');

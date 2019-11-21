@@ -124,9 +124,9 @@ void get_contents(DIR *d){
 	
 	struct dirent *entry;
 	entry = readdir(d);
-	struct stat sb;
-	stat("..", &sb);
-	display_contents("link3");
+	// struct stat sb;
+	// stat("..", &sb);
+	display_contents(entry->d_name);
 	// printf("%lld", sb.st_blocks); // - печатает  Total blocks size
 }
 

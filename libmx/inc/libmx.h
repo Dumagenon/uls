@@ -48,5 +48,6 @@ void mx_sort_list(t_list *lst);
 int mx_list_size(t_list *list);
 char *mx_strjoin(const char *s1, const char *s2);
 char *mx_strcat(char *restrict s1, const char *restrict s2);
+void mx_del_strarr(char ***arr);
 
 #endif

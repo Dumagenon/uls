@@ -2,11 +2,14 @@
 
 static void error_print(char *str)
 {
+    char *err = strerror(errno);
     mx_printerr("uls: ");
     mx_printerr(str);
     mx_printerr(": ");
-    mx_printerr(strerror(errno));
+    mx_printerr(err);
     mx_printerr("\n");
+    mx_strdel(&str);
+    mx_strdel(&err);
     exit(1);
 }
 
@@ -34,6 +37,7 @@ void print_standart(t_list *list)
         else
             rows = listSize / cols;
         print_names(names, maxLen, rows, listSize);
+        mx_del_strarr(&names);
     } else 
         non_standart(list);
 }

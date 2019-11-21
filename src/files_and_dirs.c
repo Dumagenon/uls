@@ -26,11 +26,14 @@ t_list *files_and_dirs(int argc, char *argv[], t_list **files, t_list **dirs) {
         else if (isFile(argv[i]) == 0)
             mx_push_back(dirs, argv[i], mx_strlen(argv[i]));
         else if (isFile(argv[i]) == -1) {
-            char *tmp = mx_strdup("uls: ");
-            tmp = mx_strjoin(tmp, argv[i]);
-            tmp = mx_strjoin(tmp, ": ");
-            tmp = mx_strjoin(tmp, strerror(errno));
-            mx_push_back(&err, tmp, mx_strlen(tmp));
+            char *tmp = mx_strdup("uls: "),
+            *tmp2 = mx_strjoin(tmp, argv[i]),
+            *tmp3 = mx_strjoin(tmp2, ": "),
+            *tmp4 = mx_strjoin(tmp3, strerror(errno));
+            mx_push_back(&err, tmp4, mx_strlen(tmp2));
+            mx_strdel(&tmp);
+            mx_strdel(&tmp2);
+            mx_strdel(&tmp3);
         }
     }
     return err;

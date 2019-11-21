@@ -63,5 +63,6 @@ void print_standart(t_list *list);
 void for_each_argv(int argc, char* argv[]);
 char *mx_strjoin(const char *s1, const char *s2);
 char *mx_strcat(char *restrict s1, const char *restrict s2);
+void mx_del_strarr(char ***arr);
 
 #endif
