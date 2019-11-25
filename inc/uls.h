@@ -1,5 +1,5 @@
-#ifndef LIBMX_H
-#define LIBMX_H
+#ifndef ULS_H
+#define ULS_H
 
 #include <unistd.h>
 #include <stdio.h>
@@ -24,6 +24,11 @@ typedef struct s_list {
     int len;
 	struct s_list *next;
 } t_list;
+
+typedef struct s_str {
+	char **data;
+	struct s_str *next;
+} t_str;
 
 // Utils pack:
 void mx_printchar(char c);
@@ -66,5 +71,7 @@ char *mx_strcat(char *restrict s1, const char *restrict s2);
 void mx_del_strarr(char ***arr);
 void *mx_memchr(const void *s, int c, size_t n);
 void *mx_memrchr(const void *s, int c, size_t n);
+void get_contents(DIR *d);
+void sort(t_str *lst);
 
 #endif

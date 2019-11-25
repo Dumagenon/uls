@@ -1,12 +1,10 @@
 #include "libmx.h"
 
-static bool strcmp_my(void *s1, void *s2)
-{
+static bool strcmp_my(void *s1, void *s2) {
     return mx_strcmp(s1, s2) > 0 ? true : false;
 }
 
-void mx_sort_list(t_list *lst)
-{
+void mx_sort_list(t_list *lst) {
     if (lst == NULL)
         return;
     int flag = 1;

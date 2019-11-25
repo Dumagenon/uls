@@ -5,7 +5,7 @@ NLIB = libmx/libmx.a
 HDR = uls.h
 
 SRC = mx_uls.c mx_uls_without_flag.c mx_print_names.c files_and_dirs.c \
-for_each_argv.c
+for_each_argv.c flag-l.c sort.c
 
 OBJ = $(SRC:.c=.o)
 
