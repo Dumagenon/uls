@@ -1,17 +1,14 @@
 #include "uls.h"
 
-int isFile(const char* name)
-{
+int isFile(const char* name) {
     DIR* directory = opendir(name);
 
-    if(directory != NULL)
-    {
+    if (directory != NULL) {
      closedir(directory);
      return 0;
     }
 
-    if(errno == ENOTDIR)
-    {
+    if (errno == ENOTDIR) {
      return 1;
     }
 
@@ -31,9 +28,6 @@ t_list *files_and_dirs(int argc, char *argv[], t_list **files, t_list **dirs) {
             *tmp3 = mx_strjoin(tmp2, ": "),
             *tmp4 = mx_strjoin(tmp3, strerror(errno));
             mx_push_back(&err, tmp4, mx_strlen(tmp2));
-            mx_strdel(&tmp);
-            mx_strdel(&tmp2);
-            mx_strdel(&tmp3);
         }
     }
     return err;

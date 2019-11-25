@@ -134,9 +134,9 @@ static t_str *str_to_list(struct stat sb,  char *file) {
 	return create_item(arr);
 }
 
-t_str *display_contents(char * name){
+t_str *display_contents(char *name){
 	struct stat sb;
-	lstat(name, &sb);
+	stat(name, &sb);
     return str_to_list(sb, name);
 }
 
@@ -144,8 +144,8 @@ void get_contents(DIR *d){
 	
 	struct dirent *entry;
 	t_str *listAttr = NULL;
-	// struct stat sb;
-	// stat("..", &sb);
+	struct stat sb;
+	stat("uls", &sb);
 	//entry = readdir(d);
 	while ((entry = readdir(d)) != NULL)
 		if (entry->d_name[0] != '.')
@@ -160,5 +160,5 @@ void get_contents(DIR *d){
         }
     }
     // mx_del_strarr(&listAttr->data);
-	// printf("%lld", sb.st_blocks); // - печатает  Total blocks size
+	printf("%lld", sb.st_blocks); // - печатает  Total blocks size
 }

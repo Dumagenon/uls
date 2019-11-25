@@ -7,9 +7,9 @@ static void print_one_dir(char *str) {
 
 static void print_dirs(t_list *list, t_list *files) {
     for (t_list *i = list; i != NULL; i = i->next) {
-        system("sleep 1 & leaks -q uls");
-        if (files != NULL)
-            print_one_dir(i->data);
+        //system("sleep 1 & leaks -q uls");
+        if (files != NULL)                         // TODO uls.h Makefile inc      libmx.a  src
+            print_one_dir(i->data);                // NEED inc: uls.h | libmx: Makefile inc      libmx.a  src
         if (i->next) {
             mx_uls_without_flag(i->data);
             mx_printchar('\n');
@@ -27,12 +27,14 @@ static void print_errors(t_list *list) {
 }
 
 void for_each_argv(int argc, char* argv[]) {
-    t_list *files = NULL, *dirs = NULL;
-    
+    t_list *files = NULL;
+    t_list *dirs = NULL;
     t_list *err = files_and_dirs(argc, argv, &files, &dirs);
+
     mx_sort_list(err);
     mx_sort_list(files);
     mx_sort_list(dirs);
+    
     print_errors(err);
     if (dirs != NULL && files != NULL) {
         print_standart(files);

@@ -27,20 +27,15 @@ void print_spaces(int num)
     }
 }
 
-void print_names(char **names, int max, int rows, int size)
-{
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; i + j < size; j += rows)
-        {
-            if (mx_strlen(names[i + j]) < max)
-            {
+void print_names(char **names, int max, int rows, int size) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; i + j < size; j += rows) {
+            if (mx_strlen(names[i + j]) < max) {
                 mx_printstr(names[i + j]);
                 if (i + j < size - rows) 
                     print_spaces(max - mx_strlen(names[i + j]));
-            }
-            else
-            {
+            } 
+            else {
                 mx_printstr(names[i + j]);
                 if (i + j < size - rows)
                     mx_printchar(' ');
